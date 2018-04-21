@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Group Project</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/groupproject.css" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="./js/call_api.js"></script>
+
+
+</head>
+
+<body style="padding-top:160px;">
+
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid topHeaderRow">
+			<div class="floatright" style="float: right;">
+				<a href="#" id="loginout" data-toggle="modal" data-target="#login-modal" ><span class="glyphicon glyphicon-log-out"></span> Login</a>&nbsp;&nbsp;
+				<a href="#" id="profile"><span class="glyphicon glyphicon-user"></span> Profile</a>&nbsp;&nbsp;
+				<a href="#" id="favo"><span class="glyphicon glyphicon-star"></span> Favorites</a>&nbsp;&nbsp;
+			</div>
+		</div>
+  <div class="container-fluid" style="background-color: #303E9F">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+    <a class="navbar-brand" href="#">Share Your Travels</a>
+    </div>
+<!--     <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Get Start!</a></li>
+    </ul> -->
+    <div id="app-navbar-collapse" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+<!-- Start for drop down menu (contact)-->
+	<li class="nav-item">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact<span class="sr-only">(current)</span></a>
+      </li>
+
+    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>Browse<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.gmail.com" target="_blank">Email</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="http://www.google.com" target="_blank">Website</a></li>
+            <li><a href="#" target="_blank">Github</a></li>
+         </ul>
+        </li>
+    </ul>
+    <form class="navbar-form navbar-right" action="#" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default" style="background-color: #ff4081; border-color: #ff4081;color: white ">Submit</button>
+</form>
+
+
+  </div>
+  </div>
+</nav>
+		<div class="container-fluid">
+
+			<!-- main row-->
+			<div class="row">
+				<div class="col-md-2">
+					<div class="list-group">
+
+
+
+					  <a href="#" class="list-group-item list-group-item-action active">
+					    Continent
+					  </a>
+					  <script src="js/data.js"></script>
+					  <script>
+							region.map((obj)=>{document.write('<a href="#" class="list-group-item list-group-item-action" onClick="continent(\''+obj.continents+'\')">'+obj.continents+'</a>');})
+						</script>
+					</div>
+
+					<div id="appdiv" class="list-group">
+						<a href="#" id="start" class="list-group-item list-group-item-action active">
+					    Popular
+					  </a>
+					<script>
+						function continent(popular){
+							let populars = []
+							region.map((obj)=>{
+								if(obj.continents == popular)
+								 populars = obj.popular
+							})
+
+							$(".app").remove()
+
+							let html = ""
+							console.log(populars);
+							populars.map((obj)=>{
+								html+=('<a href="#" class="list-group-item list-group-item-action app">'+obj+'</a>')
+							})
+							console.log(html)
+							document.querySelector("#start").insertAdjacentHTML( 'afterend', html);
+						}
+					</script>
+					</div>
+
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-8">
+							<figure >
+  							<img src="images/8711645510.jpg" style="width:100%"/>
+  							<p>Located on the western perimeter of Agora in Athens. Built in 460-415 BCE,it is the best preserved temple of antiquity.</p>
+							</figure>
+							
+						</div>
+
+						<div class="col-md-4">
+							<h2>Temple of Hephaistos</h2>
+							<div class="panel panel-default">
+							<div class="panel-body">
+								<p>By: <a href="#">Elle Sullivan</a></p>
+								<p>Country: <a href="#">Greece</a></p>
+								<p>City: <a href="#">Athens</a></p>
+								<p>Taken on: August 8,2017</p>
+							</div>
+						</div>
+
+							  <div class="btn-group btn-group-justified">
+							    <a class="btn btn-default"><span class="glyphicon glyphicon-print"></span></a>
+							    <a class="btn btn-default"><span class="glyphicon glyphicon glyphicon-download-alt"></span></a>
+							    <a class="btn btn-default"><span class="glyphicon glyphicon-print"></span></a>
+							    <a class="btn btn-default"><span class="glyphicon glyphicon glyphicon-comment"></span></a>
+							  </div>
+<!---------------------------Wait you edit style -->
+							  <p>Tags</p>
+							  <div class="panel panel-default">
+							  <div class="panel-body">
+							  	<span class="badge badge-primary">ancient</span>
+							  	<span class="badge badge-primary">garden</span>
+							  	<span class="badge badge-primary">hill</span>
+							  	<span class="badge badge-primary">ruins</span>
+							  	<span class="badge badge-primary">sunshine</span>
+							  	<span class="badge badge-primary">temple</span>
+							  </div>
+							  </div>
+<!--------------------------------------------------------------------- -->
+						</div>
+						
+
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+						<h3>Related Photos</h3>
+						<div class="row">
+						<div class="col-md-3 text-center">
+  							​<div class="thumbnail"> 
+  								<source srcset="images/related/8710320515.jpg" type="image/svg+xml"> 
+  								<img src="images/related/8710320515.jpg" class="img-fluid img-thumbnail"> 
+  							<div class="caption">
+								<p>Ekklisia Agii Isidori</p>
+							</div>
+							<div class="btn-toolbar" >
+										<button type="button" class="btn btn-info btn-sm" style="background-color: #40C4FF; border-color: #40C4FF"><span class="glyphicon glyphicon-eye-open"></span>View</button>
+										<button type="button" class="btn btn-default btn-sm fav" style="background-color: #ff4081; border-color: #ff4081;color: white "><span class="glyphicon glyphicon-heart"></span>Favorite</button>
+							</div>
+
+  							</div>
+  							
+
+  						</div>
+						<div class="col-md-3 text-center">
+  							​<div class="thumbnail"> <source srcset="images/related/8710513053.jpg" type="image/svg+xml"> <img src="images/related/8710513053.jpg" class="img-fluid img-thumbnail"> 
+
+  							<div class="caption">
+										<p>Theatre of Dionysos</p>
+									</div>
+									<div class="btn-toolbar" >
+										<button type="button" class="btn btn-info btn-sm" style="background-color: #40C4FF; border-color: #40C4FF"><span class="glyphicon glyphicon-eye-open"></span>View</button>
+										<button type="button" class="btn btn-default btn-sm fav" style="background-color: #ff4081; border-color: #ff4081;color: white "><span class="glyphicon glyphicon-heart"></span>Favorite</button>
+									</div>
+
+  							</div>
+						</div>
+						<div class="col-md-3 text-center">
+  							​<div class="thumbnail"> <source srcset="images/related/8711623884.jpg" type="image/svg+xml"> <img src="images/related/8711623884.jpg" class="img-fluid img-thumbnail"> 
+
+  							<div class="caption">
+										<p>Roman Agora</p>
+									</div>
+									<div class="btn-toolbar" >
+										<button type="button" class="btn btn-info btn-sm" style="background-color: #40C4FF; border-color: #40C4FF"><span class="glyphicon glyphicon-eye-open"></span>View</button>
+										<button type="button" class="btn btn-default btn-sm fav" style="background-color: #ff4081; border-color: #ff4081;color: white "><span class="glyphicon glyphicon-heart"></span>Favorite</button>
+									</div>
+
+
+  							</div>
+						</div>
+						<div class="col-md-3 text-center">
+  							​<div class="thumbnail"> <source srcset="images/related/9498388516.jpg" type="image/svg+xml"> <img src="images/related/9498388516.jpg" class="img-fluid img-thumbnail"> 
+
+  							<div class="caption">
+										<p>Temple of Ascleplus</p>
+									</div>
+									<div class="btn-toolbar" >
+										<button type="button" class="btn btn-info btn-sm" style="background-color: #40C4FF; border-color: #40C4FF"><span class="glyphicon glyphicon-eye-open"></span>View</button>
+										<button type="button" class="btn btn-default btn-sm fav" style="background-color: #ff4081; border-color: #ff4081;color: white "><span class="glyphicon glyphicon-heart"></span>Favorite</button>
+									</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+
+				</div>
+
+			</div>
+
+		</div>
+</body>
+<footer>
+	<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Share YourTravels</h4>
+				<p>This is a case study from the textbook. Fundamentals of Web Development.This book is published by Pearson Ed, and is the only textbook that covers the essentials of the entire field of contemporary web development.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Headquarters</h5>
+					<p>Mount Royal University 4825 Mount Royal Gate SW Calgary,Canada,T3E 6K6</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Follow Us</h5>
+					<!-- Things to do : add icon -->
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<span class="glyphicon glyphicon-pencil" color="white"></span><strong> Recent posts</strong>
+			<div class="media">
+					<div class="media-left media-top">
+						<img src="images\footer\6592294487.jpg" style="border-radius: 100%;">
+					</div>
+					<div class="media-body">
+						<h5 class="media-heading"><a href=#>Calgary in the Snow</a></h5>
+						<p><i>5 minutes ago</i></p>
+						<hr>
+					</div>
+				</div>
+				<div class="media">
+					<div class="media-left media-middle">
+						<img src="images\footer\6114904363.jpg" style="border-radius: 100%;">
+					</div>
+					<div class="media-body">
+						<h5 class="media-heading"><a href=#>Mountain Clibming</a></h5>
+						<p><i>11 minutes ago</i></p>
+						<hr>
+					</div>
+				</div>
+				<div class="media">
+					<div class="media-left media-bottom">
+						<img src="images\footer\5856697109.jpg" style="border-radius: 100%;">
+					</div>
+					<div class="media-body">
+						<h5 class="media-heading"><a href=#>Nova Scotia</a></h5>
+						<p><i>23 minutes ago</i></p>
+					</div>
+					<br>
+				</div>
+
+		</div>
+		<div class="col-md-3">
+			<div>
+				<span class="glyphicon glyphicon-envelope"></span><strong> Contact Us</strong>
+			</div>
+			<form>
+  				<div class="form-group">
+				    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+				  </div>
+				  <div class="form-group">
+				    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+				  </div>
+				  <div class="form-group">
+				    <textarea class="form-control" id="msg" name="msg" rows="4" placeholder="Enter Message"></textarea>
+				 </div>
+				  <button type="button"
+				  class="btn btn-default btn-block"
+				  style="background-color: #ff4081; border-color: #ff4081;color: white"
+				  onclick="postmsg()"
+				  >Submit</button>
+			</form>
+		</div>
+	</div>
+	</div>
+<div style="background-color: #1A237E;height: 6em;font-size: 1.1em;color: white;padding-top: 1.2em;margin-top:0.5em">
+	<div class="container-fluid">
+		<div class="text-center">
+			<p>Copyright &copy; 2017 Creative Commons ShareAlike</p>
+			<a href="#">Home</a> /
+			<a href="#">About</a> /
+			<a href="#">Contact</a> /
+			<a href="#">Browse</a>
+		</div>
+	</div>
+</div>
+	</footer>
+
+<!-- Modal - Login Form (To do?)-->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+    	  		<div class="loginmodal-container reg" style="display:none">
+				<h1>Register Your Account</h1><br>
+				<form class="register-form">
+			      <input type="text" id="create_name" placeholder="name"/>
+			      <input type="password" id="create_pw" placeholder="password"/>
+			      <input type="text" id="create_email" placeholder="email address"/>
+			      <button id="create" onClick="create_user()">create</button>
+			      <p class="message">Already registered? <a href="#">Sign In</a></p>
+			    </form>
+				</div>
+				<div class="loginmodal-container log">
+					<h1>Login to Your Account</h1><br>
+				  <form>
+					<input type="text" id="login_username" placeholder="Username">
+					<input type="password" id="login_pass" placeholder="Password">
+					<button id="login_button" onClick="login()">Login</button>
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#" id="reg">Register</a> - <a href="#">Forgot Password</a>
+				  </div>
+				  <script>
+
+				  	$("#reg").click(()=>{
+				  		console.log("hi")
+				  		$(".log").hide(1000)
+				  		$(".reg").show(1000)
+				  	})
+				  	$(".message").click(()=>{
+				  		$(".reg").hide(1000)
+				  		$(".log").show(1000)
+				  		
+				  	})
+				  	// $(".fav").click((e)=>{
+				  	// 	console.log($(e.target).parent("div").prev().prev()[0].src)
+				  	// })
+				  </script>
+				  <script src="js/fav.js"></script>
+				</div>
+
+			</div>
+		  </div>
+    	  
+<!-- -->
+
+</html>
