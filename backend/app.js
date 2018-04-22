@@ -97,7 +97,7 @@ api.post('/authenticate', function (req, res) {
           }else {
             console.log(JSON.parse(JSON.stringify(rows[0])))
             var token = jwt.sign(JSON.parse(JSON.stringify(rows[0])), app.get('secret'), {
-            expiresIn: 60*60*24
+            expiresIn: 60*60
             })
 
             res.json({
@@ -153,6 +153,15 @@ api.post("/user_favourite",(req,res)=>{
     });
 
 });
+})
+
+api.post("/del_favourite",(req,res)=>{
+  let id = ""
+  let sql = "DELETE FROM favourite WHERE id = "+req.body.fav_id
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.json({"success":true,"message":"The favourite has been deleted!"})
+  });
 })
 
 api.post("/favourite",(req,res)=>{

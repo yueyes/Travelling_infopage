@@ -41,26 +41,3 @@ $(".fav").click((e)=>{
 
 	}
 })
-
-$("#favo").click((e)=>{
-	let email = localStorage.getItem("name");
-	let token = localStorage.getItem("jwt");
-
-	$.post("http://localhost:3000/api/user_favourite/", {
-				email: email,
-				token:token
-			},
-			function(data, status) {
-				console.log(status)
-				console.log(data) //GET RESPONSE DATA
-				console.log(data.success) // WANT TO GET data["success"]
-				if(data.success){
-					document.write(JSON.stringify(data))
-				}
-				$(document).ajaxStart(function() {
-					console.log("hi");
-					}).ajaxStop(function() {
-						console.log("end");
-					});
-			})
-})

@@ -10,7 +10,10 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/groupproject.css" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="./js/call_api.js"></script>
+
 
 </head>
 
@@ -19,9 +22,9 @@
   	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid topHeaderRow">
 			<div class="floatright" style="float: right;">
-				<a href="#" data-toggle="modal" data-target="#exampleModalCenter" ><span class="glyphicon glyphicon-log-out"></span> Login</a>&nbsp;&nbsp;
-				<a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a>&nbsp;&nbsp;
-				<a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a>&nbsp;&nbsp;
+				<a href="#" id="loginout" data-toggle="modal" data-target="#login-modal" ><span class="glyphicon glyphicon-log-out"></span> Login</a>&nbsp;&nbsp;
+				<a href="#" id="profile"><span class="glyphicon glyphicon-user"></span> Profile</a>&nbsp;&nbsp;
+				<a href="fav_page.html" id="favo"><span class="glyphicon glyphicon-star"></span> Favorites</a>&nbsp;&nbsp;
 			</div>
 		</div>
   <div class="container-fluid" style="background-color: #303E9F">
@@ -32,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-    <a class="navbar-brand" href="#">Share Your Travels</a>
+    <a class="navbar-brand" href="groupproject.html">Share Your Travels</a>
     </div>
 <!--     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Get Start!</a></li>
@@ -74,11 +77,10 @@
   </div>
 </nav>
 
-       
-
-
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<div class="container-fluid" id="main_body">
+		<div id="loading" style="display:none"><img src="/images/ajax-loader.gif" /></div>
+		</div>
+		<script src="js/fav_page.js"></script>
 </body>
 <footer>
 	<div class="container-fluid">
@@ -173,26 +175,50 @@
 	</footer>
 
 <!-- Modal - Login Form (To do?)-->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h5 class="modal-title" id="exampleModalLongTitle" style="text-align:center">User Login</h5>
-        <h5 style="text-align:center">create your account!</h5>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+    	  		<div class="loginmodal-container reg" style="display:none">
+				<h1>Register Your Account</h1><br>
+				<form class="register-form">
+			      <input type="text" id="create_name" placeholder="name"/>
+			      <input type="password" id="create_pw" placeholder="password"/>
+			      <input type="text" id="create_email" placeholder="email address"/>
+			      <button id="create" onClick="create_user()">create</button>
+			      <p class="message">Already registered? <a href="#">Sign In</a></p>
+			    </form>
+				</div>
+				<div class="loginmodal-container log">
+					<h1>Login to Your Account</h1><br>
+				  <form>
+					<input type="text" id="login_username" placeholder="Username">
+					<input type="password" id="login_pass" placeholder="Password">
+					<button id="login_button" onClick="login()">Login</button>
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#" id="reg">Register</a> - <a href="#">Forgot Password</a>
+				  </div>
+				  <script>
+
+				  	$("#reg").click(()=>{
+				  		console.log("hi")
+				  		$(".log").hide(1000)
+				  		$(".reg").show(1000)
+				  	})
+				  	$(".message").click(()=>{
+				  		$(".reg").hide(1000)
+				  		$(".log").show(1000)
+				  		
+				  	})
+				  	// $(".fav").click((e)=>{
+				  	// 	console.log($(e.target).parent("div").prev().prev()[0].src)
+				  	// })
+				  </script>
+				  <script src="js/fav.js"></script>
+				</div>
+
+			</div>
+		  </div>
     	  
 <!-- -->
 
